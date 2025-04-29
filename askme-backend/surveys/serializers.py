@@ -4,14 +4,16 @@ from .models import Survey, Question, Option, Response, Answer
 class OptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Option
-        fields = ['id', 'text']
+        # fields = ['id', 'text']
+        fields = '__all__'
 
 class QuestionSerializer(serializers.ModelSerializer):
     options = OptionSerializer(many=True, read_only=True)
 
     class Meta:
         model = Question
-        fields = ['id', 'text', 'type', 'options']
+        # fields = ['id', 'text', 'type', 'options', 'survey']
+        fields = '__all__'
 
 class SurveySerializer(serializers.ModelSerializer):
     questions = QuestionSerializer(many=True, read_only=True)
@@ -47,6 +49,8 @@ class AnswerSerializer(serializers.ModelSerializer):
         elif question.type in ['single', 'multiple']:
             if not selected_options:
                 raise serializers.ValidationError('At least one option must be selected for choice questions.')
+            if question.type == 'single' and len(selected_options) > 1:
+                raise serializers.ValidationError('Maximum one option must be selected for single choice questions.')
             if text_answer:
                 raise serializers.ValidationError('Text answer should not be filled for choice questions.')
 

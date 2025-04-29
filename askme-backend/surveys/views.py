@@ -1,7 +1,7 @@
 from rest_framework import viewsets, permissions
-from .models import Survey, Question, Response
+from .models import Survey, Question, Response, Option
 from rest_framework.exceptions import PermissionDenied
-from .serializers import SurveySerializer, QuestionSerializer, ResponseSerializer
+from .serializers import SurveySerializer, QuestionSerializer, ResponseSerializer, OptionSerializer
 
 class SurveyViewSet(viewsets.ModelViewSet):
     queryset = Survey.objects.all()
@@ -23,3 +23,7 @@ class ResponseViewSet(viewsets.ModelViewSet):
     serializer_class = ResponseSerializer
     permission_classes = [permissions.AllowAny]
 
+class OptionViewSet(viewsets.ModelViewSet):
+    queryset = Option.objects.all()
+    serializer_class = OptionSerializer
+    permission_classes = [permissions.AllowAny]
