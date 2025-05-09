@@ -1,0 +1,79 @@
+.login-form, .register-form {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.login-form > h2, .register-form > h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+.login-form > div, .register-form > div {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.login-form label, .register-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: #666;
+  font-weight: 500;
+}
+
+.login-form input, .register-form input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.login-form input:disabled, .register-form input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.login-form button[type="submit"], .register-form button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 600;
+}
+
+.login-form button[type="submit"]:hover:not(:disabled), .register-form button[type="submit"]:hover:not(:disabled) {
+  background-color: #218838;
+}
+
+.login-form button[type="submit"]:disabled, .register-form button[type="submit"]:disabled {
+  background-color: #94d3a2;
+  cursor: not-allowed;
+}
+
+.login-form > a, .register-form > a {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.login-form > a:hover, .register-form > a:hover {
+  text-decoration: underline;
+}

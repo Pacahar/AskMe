@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import { API_URL } from '../config.js';
-import { saveToken} from '../utils/auth.js'
+import { API_URL } from '../../config.js';
+import { saveToken} from '../../utils/auth.js'
 
 const LoginForm = ({onLogin, onChangeForm}) => {
   const [username, setUsername] = useState('');
@@ -41,7 +41,7 @@ const LoginForm = ({onLogin, onChangeForm}) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="login-form" onSubmit={handleSubmit}>
       <h2>Login</h2>
       
       {error && <div style={{ color: 'red' }}>{error}</div>}
@@ -63,7 +63,7 @@ const LoginForm = ({onLogin, onChangeForm}) => {
       <button type="submit" disabled={isLoading || !username || !password} >
         {isLoading ? 'Авторизация...' : 'Войти'}
       </button>
-    <a onClick={() => {onChangeForm(false);}}>Еще нет аккаунта?</a>
+      <a onClick={() => {onChangeForm(false);}}>Еще нет аккаунта?</a>
     </form>
   );
 };

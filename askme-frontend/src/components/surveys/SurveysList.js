@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { API_URL } from '../config';
-import { getToken } from '../utils/auth';
+import { API_URL } from '../../config';
+import { getToken } from '../../utils/auth';
 import Survey from './Survey';
 import './SurveysList.css';
 
@@ -75,7 +75,7 @@ const SurveyList = () => {
         ))}
       </div>
 
-      <div className="pagination">
+      {totalPages > 1 && (<div className="pagination">
         <button 
           onClick={handlePrevPage} 
           disabled={currentPage === 1}
@@ -91,7 +91,7 @@ const SurveyList = () => {
         >
           Вперед
         </button>
-      </div>
+      </div>)}
     </div>
   );
 };

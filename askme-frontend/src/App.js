@@ -5,7 +5,6 @@ import Home from './pages/Home';
 import CreateSurvey from './pages/CreateSurvey';
 import TakeSurvey from './pages/TakeSurvey';
 import SurveyInfo from './pages/SurveyInfo';
-import Header from './components/Header'
 
 function App() {
   return (

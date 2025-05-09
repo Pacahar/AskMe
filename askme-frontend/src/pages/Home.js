@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { isAuthenticated, getToken, removeToken } from "../utils/auth.js";
 
-import LoginForm from "../components/LoginForm.js";
-import RegisterForm from "../components/RegisterForm.js";
-import SurveysList from "../components/SurveysList.js";
+import LoginForm from "../components/forms/LoginForm.js";
+import RegisterForm from "../components/forms/RegisterForm.js";
+import SurveysList from "../components/surveys/SurveysList.js";
 import Header from "../components/Header.js"
 
+import '../components/forms/Form.css'; 
 
 function Home() {
     const [isHaveAcc, setIsHaveAcc] = useState(true);

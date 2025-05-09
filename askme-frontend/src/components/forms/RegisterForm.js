@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { API_URL } from '../config.js';
+import { API_URL } from '../../config.js';
 
 const RegisterForm = ({ onChangeForm }) => {
   const [username, setUsername] = useState('');
@@ -41,7 +41,7 @@ const RegisterForm = ({ onChangeForm }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="register-form" onSubmit={handleSubmit}>
       <h2>Registration</h2>
       
       {error && <div style={{ color: 'red', whiteSpace: 'pre-line' }}>{error}</div>}

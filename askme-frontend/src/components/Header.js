@@ -8,7 +8,7 @@ const Header = ({ isAuth, onLogout }) => { // Получаем isAuth из пр�
     return (
       <header>
         <nav>
-          <Link to="/">Главная</Link>
+          <Link to="/">AskMe</Link>
           {isAuth && (
             <button onClick={() => {
               onLogout(false); // Обновляем состояние в Home
