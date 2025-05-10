@@ -1,9 +1,13 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
+import Header from '../components/Header';
+import SurveyResponses from '../components/surveys-info/SurveyResponses';
 
 function SurveyInfo() {
   const { id } = useParams();
-  return <h1>Информация об ответах на опрос #{id}</h1>;
+  return <div>
+    <Header />
+    <SurveyResponses survey_id={id}/>
+  </div>;
 }
 
 export default SurveyInfo;

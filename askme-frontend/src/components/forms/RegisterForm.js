@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { API_URL } from '../../config.js';
 
 const RegisterForm = ({ onChangeForm }) => {
@@ -73,11 +73,8 @@ const RegisterForm = ({ onChangeForm }) => {
         </label>
       </div>
 
-      <button type="submit" disabled={isLoading || !username || !email || !password} >
-        {isLoading ? 'Регистрация...' : 'Зарегистрироваться'}
-      </button>
-      
-      <a onClick={() => onChangeForm(true)}>Уже есть аккаунт?</a>
+      <button type="submit" disabled={isLoading || !username || !email || !password} >{isLoading ? 'Регистрация...' : 'Зарегистрироваться'}</button>
+      <button type="button" className="link-button"onClick={() => onChangeForm(true)}>Уже есть аккаунт?</button>
     </form>
   );
 };

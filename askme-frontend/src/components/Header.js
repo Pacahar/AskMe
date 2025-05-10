@@ -1,22 +1,14 @@
-import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
-import { isAuthenticated, removeToken } from '../utils/auth';
+import { removeRefreshToken, removeToken } from '../utils/auth';
 
 import './Header.css'
 
-const Header = ({ isAuth, onLogout }) => { // Получаем isAuth из пропсов
+const Header = ({ isAuth, onLogout }) => {
     return (
       <header>
         <nav>
           <Link to="/">AskMe</Link>
-          {isAuth && (
-            <button onClick={() => {
-              onLogout(false); // Обновляем состояние в Home
-              removeToken(); // Очищаем токен
-            }}>
-              Выйти
-            </button>
-          )}
+          {isAuth && (<button onClick={() => {onLogout(false); removeToken(); removeRefreshToken(); }}>Выйти</button>)}
         </nav>
       </header>
     );

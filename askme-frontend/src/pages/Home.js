@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { isAuthenticated, getToken, removeToken } from "../utils/auth.js";
+import { useState } from "react";
+import { isAuthenticated } from "../utils/auth.js";
 
 import LoginForm from "../components/forms/LoginForm.js";
 import RegisterForm from "../components/forms/RegisterForm.js";

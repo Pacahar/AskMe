@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+
 import { API_URL } from '../../config';
-import { getToken } from '../../utils/auth';
+import { getToken, refreshAccessToken } from '../../utils/auth';
 import Survey from './Survey';
+
 import './SurveysList.css';
 
 const SurveyList = () => {
@@ -12,16 +14,25 @@ const SurveyList = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const fetchSurveys = async (page = 1) => {
+  const fetchSurveys = useCallback(async (page = 1) => {
     try {
       setLoading(true);
       setError('');
       
-      const response = await fetch(`${API_URL}/api/v1/surveys/?page=${page}`, {
+      let response = await fetch(`${API_URL}/api/v1/surveys/?page=${page}`, {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
       });
+
+      if (response.status === 401) {
+        await refreshAccessToken();
+        response = await fetch(`${API_URL}/api/v1/surveys/?page=${page}`, {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        });
+      }
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -36,11 +47,11 @@ const SurveyList = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchSurveys(currentPage);
-  }, [currentPage]);
+  }, [currentPage, fetchSurveys]);
 
   const handleNextPage = () => {
     if (currentPage < totalPages) {
@@ -76,21 +87,11 @@ const SurveyList = () => {
       </div>
 
       {totalPages > 1 && (<div className="pagination">
-        <button 
-          onClick={handlePrevPage} 
-          disabled={currentPage === 1}
-        >
-          Назад
-        </button>
+        <button onClick={handlePrevPage} disabled={currentPage === 1}>Назад</button>
         
         <span>Страница {currentPage} из {totalPages}</span>
         
-        <button 
-          onClick={handleNextPage} 
-          disabled={currentPage === totalPages}
-        >
-          Вперед
-        </button>
+        <button onClick={handleNextPage} disabled={currentPage === totalPages}>Вперед</button>
       </div>)}
     </div>
   );

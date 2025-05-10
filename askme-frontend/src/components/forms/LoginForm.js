@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { API_URL } from '../../config.js';
-import { saveToken} from '../../utils/auth.js'
+import { saveRefreshToken, saveToken} from '../../utils/auth.js'
 
 const LoginForm = ({onLogin, onChangeForm}) => {
   const [username, setUsername] = useState('');
@@ -27,10 +27,10 @@ const LoginForm = ({onLogin, onChangeForm}) => {
       }
 
       const { access, refresh } = await response.json();
-      localStorage.setItem('accessToken', access);
-      localStorage.setItem('refreshToken', refresh);
       
       saveToken(access);
+      saveRefreshToken(refresh);
+
       onLogin(true);
       
     } catch (err) {
@@ -60,10 +60,8 @@ const LoginForm = ({onLogin, onChangeForm}) => {
         </label>
       </div>
 
-      <button type="submit" disabled={isLoading || !username || !password} >
-        {isLoading ? 'Авторизация...' : 'Войти'}
-      </button>
-      <a onClick={() => {onChangeForm(false);}}>Еще нет аккаунта?</a>
+      <button type="submit" disabled={isLoading || !username || !password} >{isLoading ? 'Авторизация...' : 'Войти'}</button>
+      <button type="button" className="link-button" onClick={() => onChangeForm(false)}>Еще нет аккаунта?</button>
     </form>
   );
 };

@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getToken } from '../../utils/auth'
+import { getToken, isAuthenticated } from '../../utils/auth'
 import { API_URL } from '../../config';
 
 import './CreateSurveyForm.css';
 
 const CreateSurveyForm = () => {
   const navigate = useNavigate();
+  if (!isAuthenticated()) {
+    navigate('/');
+  }
+  
   const [survey, setSurvey] = useState({ title: '', description: '' });
   const [questions, setQuestions] = useState([]);
   const [currentQuestion, setCurrentQuestion] = useState({
