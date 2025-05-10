@@ -1,0 +1,170 @@
+.create-survey-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+  }
+  
+  input[type="text"], textarea, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  .has-error input, .has-error textarea {
+    border-color: #ff4444;
+  }
+  
+  .error-message {
+    color: #ff4444;
+    margin: 10px 0;
+    padding: 10px;
+    background: #ffeeee;
+    border-radius: 4px;
+  }
+  
+  .questions-section {
+    margin-top: 30px;
+    width: 60%
+  }
+  
+  .questions-list {
+    margin: 25px 0;
+    padding: 15px;
+  }
+  
+  .question-preview {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+  
+  .question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+  
+  .question-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #2d3436;
+    font-weight: 600;
+    flex-grow: 1;
+    padding-right: 15px;
+  }
+  
+  .delete-button {
+    background: #ff7675;
+    border: none;
+    color: white;
+    width: 28px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .delete-button:hover {
+    background: #ff5252;
+  }
+  
+  .question-preview p {
+    margin: 8px 0 12px;
+    font-size: 0.9rem;
+    color: #636e72;
+    font-style: italic;
+  }
+  
+  .options-preview {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+  }
+  
+  .options-preview li {
+    padding: 8px 12px;
+    margin: 5px 0;
+    background: #f8f9fa;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: #444;
+    display: flex;
+    align-items: center;
+  }
+  
+  .options-preview li::before {
+    content: "• ";
+  }
+
+  .options-form {
+    margin: 15px 0;
+  }
+  
+  .option-input {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .delete-option-button {
+    background: #ff4444;
+    border: none;
+    color: white;
+    padding: 0 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .submit-button {
+    background: #007bff;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .submit-button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .add-option-button, .add-question-button {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    width: 100%
+  }
+
+  .add-option-button {
+    background-color: grey;
+    width: fit-content;
+  }

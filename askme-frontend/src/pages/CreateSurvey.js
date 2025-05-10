@@ -1,7 +1,13 @@
 import React from 'react';
 
+import Header from '../components/Header';
+import CreateSurveyForm from '../components/forms/CreateSurveyForm';
+
 function CreateSurvey() {
-  return <h1>Создание опроса</h1>;
+  return <div>
+    <Header/>
+    <CreateSurveyForm/>
+  </div>;
 }
 
 export default CreateSurvey;
