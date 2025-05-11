@@ -74,6 +74,7 @@ class AnswerSerializer(serializers.ModelSerializer):
 
         return data
 
+
 class ResponseSerializer(serializers.ModelSerializer):
     answers = AnswerSerializer(many=True)
 

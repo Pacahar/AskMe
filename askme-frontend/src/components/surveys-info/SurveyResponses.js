@@ -40,49 +40,62 @@ const SurveyResponses = ({survey_id}) => {
   }, [survey_id]);
 
   const getQuestionStats = () => {
-    if (!survey) return [];
-    
-    return survey.questions
-      .filter(q => q.type !== 'text')
-      .map(question => {
-        const optionsStats = {};
-        
-        question.options.forEach(opt => {
-          optionsStats[opt.id] = {
-            text: opt.text,
-            count: 0,
-            percentage: 0
-          };
-        });
+  if (!survey) return [];
+  
+  return survey.questions
+    .filter(q => q.type !== 'text')
+    .map(question => {
+      const optionsStats = {};
+      
+      question.options.forEach(opt => {
+        optionsStats[opt.id] = {
+          text: opt.text,
+          count: 0,
+          percentage: 0
+        };
+      });
 
-        let totalAnswers = 0;
-        responses.forEach(response => {
-          const answer = response.answers.find(a => a.question === question.id);
-          if (answer) {
+      let totalRespondents = 0;
+      responses.forEach(response => {
+        const answer = response.answers.find(a => a.question === question.id);
+        if (answer) {
+          if (question.type === 'multiple') {
+            if (answer.selected_options.length > 0) {
+              totalRespondents++;
+              answer.selected_options.forEach(optId => {
+                if (optionsStats[optId]) {
+                  optionsStats[optId].count++;
+                }
+              });
+            }
+          } else {
+            totalRespondents++;
             answer.selected_options.forEach(optId => {
               if (optionsStats[optId]) {
                 optionsStats[optId].count++;
-                totalAnswers++;
               }
             });
           }
-        });
-
-        if (totalAnswers > 0) {
-          Object.keys(optionsStats).forEach(optId => {
-            optionsStats[optId].percentage = Math.round((optionsStats[optId].count / totalAnswers) * 100);
-          });
         }
-
-        return {
-          questionId: question.id,
-          questionText: question.text,
-          questionType: question.type,
-          options: Object.values(optionsStats),
-          totalAnswers
-        };
       });
-  };
+
+      if (totalRespondents > 0) {
+        Object.keys(optionsStats).forEach(optId => {
+          optionsStats[optId].percentage = Math.round(
+            (optionsStats[optId].count / totalRespondents) * 100
+          );
+        });
+      }
+
+      return {
+        questionId: question.id,
+        questionText: question.text,
+        questionType: question.type,
+        options: Object.values(optionsStats),
+        totalAnswers: totalRespondents
+      };
+    });
+};
 
   if (loading) return <div className="loading">Загрузка данных...</div>;
   if (error) return <div className="error">Ошибка: {error}</div>;
