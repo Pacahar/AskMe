@@ -14,6 +14,13 @@ const SurveyList = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const handleDelete = async (id) => {
+    await fetch(`${API_URL}/api/v1/surveys/${id}/`, {
+      method: 'DELETE',
+    });
+    fetchSurveys(currentPage); // повторный запрос после удаления
+  };
+
   const fetchSurveys = useCallback(async (page = 1) => {
     try {
       setLoading(true);
@@ -82,6 +89,7 @@ const SurveyList = () => {
             id={survey.id} 
             title={survey.title} 
             description={survey.description}
+            onDelete={() => handleDelete(survey.id)}
           />
         ))}
       </div>

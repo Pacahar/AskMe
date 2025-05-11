@@ -56,6 +56,19 @@ class QuestionViewSet(viewsets.ModelViewSet):
         serializer.save(survey=survey)
 
 
+class ResponseViewSet(viewsets.ModelViewSet):
+    queryset = Response.objects.all()
+    serializer_class = ResponseSerializer
+    permission_classes = [permissions.AllowAny]
+
+
+    def get_queryset(self):
+        user = self.request.user
+        if not user.is_authenticated:
+            raise PermissionDenied("Only authorized users can get responses info.")
+        return super().get_queryset().filter(survey__creator=user)
+
+
 class OptionViewSet(viewsets.ModelViewSet):
     queryset = Option.objects.all()
     serializer_class = OptionSerializer

@@ -42,20 +42,20 @@ const LoginForm = ({onLogin, onChangeForm}) => {
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
-      <h2>Login</h2>
+      <h2>Авторизация</h2>
       
       {error && <div style={{ color: 'red' }}>{error}</div>}
       
       <div>
         <label>
-          Username:
+          Имя пользователя:
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} disabled={isLoading} required />
         </label>
       </div>
 
       <div>
         <label>
-          Password:
+          Пароль:
           <input type="password" value={password}  onChange={(e) => setPassword(e.target.value)} disabled={isLoading} required />
         </label>
       </div>

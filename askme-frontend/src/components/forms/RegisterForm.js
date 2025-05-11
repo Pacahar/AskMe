@@ -42,13 +42,13 @@ const RegisterForm = ({ onChangeForm }) => {
 
   return (
     <form className="register-form" onSubmit={handleSubmit}>
-      <h2>Registration</h2>
+      <h2>Регистрация</h2>
       
       {error && <div style={{ color: 'red', whiteSpace: 'pre-line' }}>{error}</div>}
       
       <div>
         <label>
-          Username:
+          Имя пользователя:
           <input
             type="text"
             value={username}
@@ -61,14 +61,14 @@ const RegisterForm = ({ onChangeForm }) => {
 
       <div>
         <label>
-          Email:
+          Почта:
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} disabled={isLoading} required />
         </label>
       </div>
 
       <div>
         <label>
-          Password:
+          Пароль:
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} disabled={isLoading} required />
         </label>
       </div>

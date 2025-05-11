@@ -4,12 +4,17 @@
     margin: 10px;
     border-radius: 8px;
     width: 15em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   
   .survey-actions {
     margin-top: 15px;
     display: flex;
     gap: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
   
   .btn {
@@ -26,5 +31,16 @@
   
   .btn-secondary {
     background-color: #6c757d;
+    color: white;
+  }
+
+  .btn-danger {
+    background-color: #dc3545;
+    color: white;
+    text-decoration: underline;
+  }
+
+    .btn-danger:hover {
+    background-color: #dc3545;
     color: white;
   }
