@@ -18,7 +18,7 @@ const SurveyList = () => {
     await fetch(`${API_URL}/api/v1/surveys/${id}/`, {
       method: 'DELETE',
     });
-    fetchSurveys(currentPage); // повторный запрос после удаления
+    fetchSurveys(currentPage); 
   };
 
   const fetchSurveys = useCallback(async (page = 1) => {
