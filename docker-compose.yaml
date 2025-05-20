@@ -11,6 +11,8 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - pgdata:/var/lib/postgresql/data
+    networks:
+      - private
     ports:
       - "5432:5432"
 
@@ -21,6 +23,8 @@ services:
     command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./askme-backend:/app
+    networks:
+      - private
     ports:
       - "8000:8000"
     depends_on:
@@ -38,6 +42,8 @@ services:
     container_name: askme_frontend
     volumes:
       - ./askme-frontend:/app
+    networks:
+      - private
     ports:
       - "3000:3000"
     stdin_open: true
@@ -47,3 +53,11 @@ services:
 
 volumes:
   pgdata:
+
+networks:
+  private:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: "10.0.0.0/19"
+          gateway: "10.0.0.1"
