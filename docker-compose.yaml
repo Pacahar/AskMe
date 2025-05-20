@@ -1,10 +1,8 @@
-version: '3.9'
-
 services:
   db:
     image: postgres:15
     container_name: askme_db
-    restart: always
+    restart: unless-stopped
     environment:
       POSTGRES_DB: askme
       POSTGRES_USER: postgres
@@ -20,7 +18,8 @@ services:
     build:
       context: ./askme-backend
     container_name: askme_backend
-    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    restart: unless-stopped
+    command: sh -c "sleep 15 && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - ./askme-backend:/app
     networks:
@@ -40,8 +39,10 @@ services:
     build:
       context: ./askme-frontend
     container_name: askme_frontend
+    restart: unless-stopped
     volumes:
       - ./askme-frontend:/app
+      - /app/node_modules
     networks:
       - private
     ports:
